@@ -18,7 +18,7 @@ title = "Eva Kato"
    image = "img/logo.png"
 #   headline = "I'm only human"
 #   bio = "A little bit about you"
-#   links = [
+  links = [
 #     { email = "mailto:hello@your_domain.com" },
 #     { link = "https://link-to-some-website.com/" },
 #     { amazon = "https://www.amazon.com/hz/wishlist/ls/wishlist-id" },
@@ -31,7 +31,7 @@ title = "Eva Kato"
 #     { facebook = "https://facebook.com/username" },
 #     { flickr = "https://www.flickr.com/photos/username/" },
 #     { foursquare = "https://foursquare.com/username" },
-#     { github = "https://github.com/username" },
+     { github = "https://github.com/evakato" },
 #     { gitlab = "https://gitlab.com/username" },
 #     { google = "https://www.google.com/" },
 #     { hashnode = "https://username.hashnode.dev" },
@@ -62,4 +62,4 @@ title = "Eva Kato"
 #     { whatsapp = "https://wa.me/phone-number" },
 #     { youtube = "https://youtube.com/username" },
 #     { ko-fi = "https://ko-fi.com/username" },
-#   ]
+   ]
