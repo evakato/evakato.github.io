@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Graphics on Eva Kato</title>
+    <link>https://evakato.github.io/tags/graphics/</link>
+    <description>Recent content in Graphics on Eva Kato</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2023 Eva Kato</copyright>
+    <lastBuildDate>Mon, 04 Sep 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://evakato.github.io/tags/graphics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Real-Time Ray Tracer</title>
+      <link>https://evakato.github.io/projects/rtraytracer/</link>
+      <pubDate>Mon, 04 Sep 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://evakato.github.io/projects/rtraytracer/</guid>
+      <description>A real-time ray tracing engine in C++, implemented with a variety of acceleration structures, including bounding volume hierarchy (BVH), kd-tree, and grid structures.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://evakato.github.io/projects/rtraytracer/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Custom 3D Rasterization Engine</title>
+      <link>https://evakato.github.io/projects/rastengine/</link>
+      <pubDate>Sun, 04 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://evakato.github.io/projects/rastengine/</guid>
+      <description>A rasterization engine written with C++ and FLTK where I implemented a variety of rendering techniques, including pixel-accurate shadows with irregular z-buffering, and reflections in environment maps.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://evakato.github.io/projects/rastengine/featured.jpg" />
+    </item>
+    
+  </channel>
+</rss>

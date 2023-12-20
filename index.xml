@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Eva Kato</title>
+    <link>https://evakato.github.io/</link>
+    <description>Recent content on Eva Kato</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2023 Eva Kato</copyright>
+    <lastBuildDate>Mon, 04 Sep 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://evakato.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Real-Time Ray Tracer</title>
+      <link>https://evakato.github.io/projects/rtraytracer/</link>
+      <pubDate>Mon, 04 Sep 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://evakato.github.io/projects/rtraytracer/</guid>
+      <description>A real-time ray tracing engine in C++, implemented with a variety of acceleration structures, including bounding volume hierarchy (BVH), kd-tree, and grid structures.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://evakato.github.io/projects/rtraytracer/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Custom 3D Rasterization Engine</title>
+      <link>https://evakato.github.io/projects/rastengine/</link>
+      <pubDate>Sun, 04 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://evakato.github.io/projects/rastengine/</guid>
+      <description>A rasterization engine written with C++ and FLTK where I implemented a variety of rendering techniques, including pixel-accurate shadows with irregular z-buffering, and reflections in environment maps.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://evakato.github.io/projects/rastengine/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>hashtagcuber.com</title>
+      <link>https://evakato.github.io/projects/hashtagcuber/</link>
+      <pubDate>Fri, 04 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://evakato.github.io/projects/hashtagcuber/</guid>
+      <description>A project where I explore the Square-1, a Rubik&amp;rsquo;s cube variant puzzle. These experiments include implementing a graph representation of puzzle state subset known as OBL, developing an algorithm to generate transformations of a puzzle turn sequence, and more.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://evakato.github.io/projects/hashtagcuber/featured.jpeg" />
+    </item>
+    
+    <item>
+      <title>VR for Language Learning</title>
+      <link>https://evakato.github.io/projects/vr-hiragana/</link>
+      <pubDate>Wed, 04 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://evakato.github.io/projects/vr-hiragana/</guid>
+      <description>I created a VR game for a research group at Purdue University&amp;rsquo;s School of Languages and Cultures, who are studying the role of VR in language learning. This game tasks the user with matching the target language sounds with its corresponding character, in this case Japanese language&amp;rsquo;s hiragana.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://evakato.github.io/projects/vr-hiragana/featured.jpg" />
+    </item>
+    
+  </channel>
+</rss>
