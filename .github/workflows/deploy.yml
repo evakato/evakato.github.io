@@ -3,7 +3,7 @@ name: Deploy Hugo Site to GitHub Pages
 on:
   push:
     branches:
-      - main # Trigger deployment on push to the main branch
+      - main
 
 jobs:
   build:
@@ -16,7 +16,7 @@ jobs:
       - name: Set up Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: "0.112.0" # Specify the Hugo version you are using
+          hugo-version: "0.112.0"
 
       - name: Build the Hugo site
         run: hugo --minify
@@ -24,6 +24,6 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }} # GitHub token automatically provided by Actions
-          publish_dir: ./public # Hugo output directory
-          publish_branch: gh-pages # Branch for GitHub Pages
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          publish_branch: gh-pages
