@@ -20,7 +20,7 @@
       <link>https://example.org/articles/structure/</link>
       <pubDate>Sat, 18 Dec 2021 00:00:00 +0000</pubDate>
       <guid>https://example.org/articles/structure/</guid>
-      <description>Understand the structure of the theme&amp;rsquo;s setup to create content for your website.&#xA;Theme&amp;rsquo;s content structure . ├── ... ├── content # Hosts all Markdown content │ ├── articles # Contains the list of markdown files for notes/posts │ │ ├── article-1.md │ │ ├── article-2.md │ │ └── article-3.md │ └── portfolio # List of portfolio projects or case studies │ ├── project-1.md │ └── project-2.md ├── data # Test files (alternatively `spec` or `tests`) │ └── stack.</description>
+      <description>Understand the structure of the theme&amp;rsquo;s setup to create content for your website.&#xA;Theme&amp;rsquo;s content structure .&#xD;├── ...&#xD;├── content # Hosts all Markdown content&#xD;│ ├── articles # Contains the list of markdown files for notes/posts&#xD;│ │ ├── article-1.md&#xD;│ │ ├── article-2.md&#xD;│ │ └── article-3.md&#xD;│ └── portfolio # List of portfolio projects or case studies&#xD;│ ├── project-1.md&#xD;│ └── project-2.md&#xD;├── data # Test files (alternatively `spec` or `tests`)&#xD;│ └── stack.</description>
     </item>
     <item>
       <title>3. Primary Menu</title>

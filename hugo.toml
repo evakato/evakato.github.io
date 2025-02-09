@@ -1,4 +1,4 @@
-baseURL = "https://example.org/"
+baseURL = "https://evakato.github.io/"
 languageCode = "en-us"
 title = "Eva Kato"
 theme = "digitalgarden"
@@ -6,7 +6,7 @@ theme = "digitalgarden"
 googleAnalytics = "UA-PROPERTY_ID"
 
 [Params]
-  description = "My Digital Garden on the Internet"
+  description = "Eva Kato"
   images = ['/digital-garden-logo.png']
   enableSearch = true
 
