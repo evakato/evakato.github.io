@@ -1,0 +1,41 @@
+{{ define "main" }} {{ $description := .Description }}
+
+<main class="h-screen overflow-y-auto w-full">
+  <section class="w-full max-w-xl mx-auto flex flex-col px-6 py-20">
+    <div class="space-y-2.5 grid grid-cols-1 gap-2">
+      {{ range $index, $page := .Data.Pages -}}
+
+      <a class="block px-3 py-4" href="{{ .RelPermalink }}">
+  {{ $title := .Params.title }}
+    {{ with .Params.images }}
+        {{- range first 1 . }}
+        <img class="rounded  max-w-full w-full mb-4" src="{{ . }}" alt="{{ $title }}" />
+        {{ end -}}
+        {{ end }}
+
+  <div class="flex items-center justify-center">
+    <h3 class="text-lg font-semibold mb-0.5 lg:text-xl 2xl:text-3xl text-center font-sans">
+      {{ $title }}
+    </h3>
+  </div>
+
+  {{ with .Description }}
+    <div class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">
+      {{ . }}
+    </div>
+  {{ end }}
+</a> 
+
+
+      {{ if and (eq $index 0) $description }}
+      <h4
+        class="ml-3 py-8 lg:py-0 lg:mx-2 text-2xl lg:text-5xl font-bold lg:font-medium !leading-tight content-center"
+      >
+        {{ $description }}
+      </h3>
+      {{ end }} {{ end -}}
+    </div>
+  </section>
+</main>
+
+{{ end }}

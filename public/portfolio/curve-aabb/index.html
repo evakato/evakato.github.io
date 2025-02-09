@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="icon" href="/favicon.ico">
+
+  <title>
+    On cubic Bezier and Hermite curves - Eva Kato
+  </title>
+
+  <meta name="description" content="Exploring the representations of cubic Bezier and Hermite curves" />
+  <meta name="author" content="Eva Kato" />
+  <meta name="generator" content="Hugo 0.124.1">
+
+  <link rel="stylesheet" href="http://localhost:1313/css/main.css" />
+
+  
+  
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.css"
+      integrity="sha384-D+9gmBxUQogRLqvARvNLmA9hS2x//eK1FhVb9PiU86gmcrBrJAQT8okdJ4LMp2uv"
+      crossorigin="anonymous"
+    >
+
+    <script defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.js"
+      integrity="sha384-483A6DwYfKeDa0Q52fJmxFXkcPCFfnXMoXblOkJ4JcA8zATN6Tm78UNL72AKk+0O"
+      crossorigin="anonymous"
+    ></script>
+
+    <script defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/contrib/auto-render.min.js"
+      integrity="sha384-yACMu8JWxKzSp/C1YV86pzGiQ/l1YUfE8oPuahJQxzehAjEt2GiQuy/BIvl9KyeF"
+      crossorigin="anonymous"
+      onload="renderMathInElement(document.body);"
+    ></script>
+  
+
+  <meta property="og:title" content="On cubic Bezier and Hermite curves" />
+<meta property="og:description" content="Exploring the representations of cubic Bezier and Hermite curves" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/portfolio/curve-aabb/" /><meta property="og:image" content="http://localhost:1313/digital-garden-logo.png" /><meta property="article:section" content="portfolio" />
+<meta property="article:published_time" content="2024-10-31T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-10-31T00:00:00+00:00" />
+
+
+  <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="http://localhost:1313/digital-garden-logo.png" /><meta name="twitter:title" content="On cubic Bezier and Hermite curves"/>
+<meta name="twitter:description" content="Exploring the representations of cubic Bezier and Hermite curves"/>
+
+
+  <meta itemprop="name" content="On cubic Bezier and Hermite curves">
+<meta itemprop="description" content="Exploring the representations of cubic Bezier and Hermite curves"><meta itemprop="datePublished" content="2024-10-31T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2024-10-31T00:00:00+00:00" />
+<meta itemprop="wordCount" content="971"><meta itemprop="image" content="http://localhost:1313/digital-garden-logo.png" />
+<meta itemprop="keywords" content="curves," />
+
+  <meta itemprop="name" content="On cubic Bezier and Hermite curves">
+<meta itemprop="description" content="Exploring the representations of cubic Bezier and Hermite curves"><meta itemprop="datePublished" content="2024-10-31T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2024-10-31T00:00:00+00:00" />
+<meta itemprop="wordCount" content="971"><meta itemprop="image" content="http://localhost:1313/digital-garden-logo.png" />
+<meta itemprop="keywords" content="curves," />
+</head>
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=DM+Serif+Display:ital@0;1&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="flex relative h-full min-h-screen"><aside
+    class="will-change-transform transform transition-transform -translate-x-full absolute top-0 left-0 md:relative md:translate-x-0 w-3/4 md:basis-60 h-full min-h-screen p-3 bg-amber-50 bg-opacity-20 border-r border-slate-200 dark:border-slate-700 flex flex-col gap-2.5 z-20 sidebar flex-shrink-0">
+    <p class="font-bold mb-5 flex items-center gap-2 font-sans">
+        <button aria-label="Close sidebar"
+            class="md:hidden menu-trigger-close p-1 rounded text-slate-800 dark:text-slate-50 hover:bg-slate-200 dark:hover:bg-slate-700"><svg class="h-6 w-6" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+  fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" />
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+</svg></button>
+        <a href="http://localhost:1313/" class="px-2 text-3xl text-keenanpurple-dark no-underline">
+            <span>Eva Kato</span>
+        </a>
+    </p>
+
+    
+    <ul class="list-none flex flex-col gap-1 font-sans">
+        
+        <li>
+            <a class="no-underline hover:text-slate-700 px-2 py-1 rounded-md text-2xl flex items-center justify-between 
+         
+            hover:bg-keenanpurple-light
+        " href="/cv" >
+                <span>CV</span>
+                
+            </a>
+        </li>
+
+
+        
+        <li>
+            <a class="no-underline hover:text-slate-700 px-2 py-1 rounded-md text-2xl flex items-center justify-between 
+         
+            hover:bg-keenanpurple-light
+        " href="/portfolio" >
+                <span>Projects</span>
+                
+            </a>
+        </li>
+
+
+        
+    </ul>
+
+    <div class="flex-1"></div>
+
+    
+
+    <ul class="list-none flex flex-wrap justify-center gap-1 pt-2 border-t border-slate-200 dark:border-slate-600">
+        
+        <li>
+            <a class="px-2 py-1.5 rounded-md text-sm block text-slate-800 dark:text-slate-50  hover:bg-slate-200 dark:hover:bg-slate-700 "
+                href="https://github.com/evakato" target="_blank" rel="noopener noreferrer">
+                <span class="sr-only">GitHub</span>
+                
+                <span><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+  stroke-linecap="round" stroke-linejoin="round">
+  <path
+    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+</svg></span>
+                
+            </a>
+        </li>
+        
+        <li>
+            <a class="px-2 py-1.5 rounded-md text-sm block text-slate-800 dark:text-slate-50  hover:bg-slate-200 dark:hover:bg-slate-700 "
+                href="mailto:evakato14@gmail.com" target="_blank" rel="noopener noreferrer">
+                <span class="sr-only">Email</span>
+                
+                <span><svg class="h-4 w-4" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+  fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" />
+  <rect x="3" y="5" width="18" height="14" rx="2" />
+  <polyline points="3 7 12 13 21 7" />
+</svg></span>
+                
+            </a>
+        </li>
+        
+    </ul>
+</aside>
+
+<div
+    class="fixed bg-amber-50 bg-opacity-20 bg-opacity-5 transition duration-200 ease-in-out inset-0 z-10 pointer-events-auto md:hidden left-0 top-0 w-full h-full hidden menu-overlay">
+</div>
+
+<button aria-label="Toggle Sidebar"
+    class="md:hidden absolute top-3 left-3 z-10 menu-trigger p-1 rounded text-slate-800 dark:text-slate-50 hover:bg-slate-100"><svg class="h-6 w-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+  fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" />
+  <line x1="4" y1="6" x2="20" y2="6" />
+  <line x1="4" y1="12" x2="20" y2="12" />
+  <line x1="4" y1="18" x2="16" y2="18" />
+</svg></button>
+
+
+
+
+<div class="flex max-h-screen relative overflow-y-auto h-full w-full">
+
+    <article class="px-6 py-20 w-full mx-auto prose lg:prose-lg dark:prose-invert h-fit prose-img:mx-auto">
+
+        <a href="http://localhost:1313/portfolio/"
+            class="!no-underline !text-slate-500 !mb-2 !inline-block !font-normal !text-sm hover:!text-slate-700 dark:hover:!text-slate-400">←
+            Back to list</a>
+
+        
+        <h1 class="!mb-2">On cubic Bezier and Hermite curves</h1>
+        
+        <p class="text-sm text-slate-500 !mb-8">October 31, 2024</p>
+        
+
+        <h2 id="bezier-and-hermite-curves">Bezier and Hermite curves</h2>
+<p>A cubic Bezier curve with four control points $P_0, P_1, P_2, P_3$ is defined as a linear combination of its control points, where the weights are determined by a set of blending functions like so:</p>
+<p>$$
+\mathbf{b}(t) =
+\begin{pmatrix}
+1 &amp; t &amp; t^2 &amp; t^3
+\end{pmatrix}
+\begin{pmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 \newline
+-3 &amp; 3 &amp; 0 &amp; 0 \newline
+3 &amp; -6 &amp; 3 &amp; 0 \newline
+-1 &amp; 3 &amp; -3 &amp; 1 \newline
+\end{pmatrix}
+$$</p>
+<p>These blending functions are referred to as cubic <a href="https://en.wikipedia.org/wiki/Bernstein_polynomial#Bernstein_basis_polynomials"  target="_blank" rel="noopener" >Bernstein basis functions</a>, which span the space of cubic polynomials.
+We can easily throw this into a tessellation shader and let the GPU work its magic:</p>
+<div style="display: flex; justify-content: space-around; gap: 10px;">
+    <figure style="text-align: center; width: 35%;">
+        <img src="bezier.png" alt="Bezier curve" style="width: 100%;" />
+    </figure>
+</div>
+<div style="display: flex; justify-content: space-around; gap: 10px;">
+    <figure style="text-align: center; width: 55%;">
+        <figcaption>Bezier curve</figcaption>
+    </figure>
+</div>
+<p>Another common representation of the cubic curve is the Hermite curve, whose blending functions are defined by:
+$$
+\mathbf{h}(t) =
+\begin{pmatrix}
+1 &amp; t &amp; t^2 &amp; t^3
+\end{pmatrix}
+\begin{pmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 \newline
+0 &amp; 1 &amp; 0 &amp; 0 \newline
+-3 &amp; -2 &amp; -1 &amp; 3 \newline
+2 &amp; 1 &amp; 1 &amp; -2 \newline
+\end{pmatrix}
+$$</p>
+<p>Abstracting it like this shows that the only difference between Hermite and Bezier is the change in basis, which is why the matrix on the right is called the <em>basis matrix</em>.</p>
+<p>My ordering of the matrix corresponds to the same ordering of points in the Bezier representation. In other words, $P_0$ and $P_3$ are still the points being directly interpolated, and $P_1$ and $P_2$ are their tangent handles respectively (Some people order these points differently for the Hermite curve, and consequently the basis matrix is slightly different).</p>
+<p>If we have the point vector $[P_0, P_1, P_2, P_3]^{\top}$ for the Hermite curve, we can find the Bezier tangent handles $B_1$ and $B_2$ by a simple conversion:
+$$
+B_1 = P_0 + \frac{1}{3} \cdot P_1
+$$
+$$
+B_2 = P_3 - \frac{1}{3} \cdot P_2
+$$
+while the interpolated points $B_0$ and $B_3$ are exactly the same as $P_0$ and $P_3$ respectively.</p>
+<p>Now let&rsquo;s run these shaders. I feed some point vector $\mathbf{h}$ into the <code>hermite4()</code> function, then perform the above conversion to get point vector $\mathbf{b}$, which I pass into the <code>bezier4()</code> function. Then I draw the four points exactly how they are passed in to form the curve.</p>
+<div style="display: flex; justify-content: space-around; gap: 10px;">
+    <figure style="text-align: center; width: 45%;">
+        <img src="hermite.png" alt="Hermite curve" style="width: 100%;" />
+        <figcaption>Hermite curve</figcaption>
+    </figure>
+    <figure style="text-align: center; width: 45%;">
+        <img src="bezier.png" alt="Bezier curve" style="width: 100%;" />
+        <figcaption>Bezier curve</figcaption>
+    </figure>
+</div>
+<p>This drawing of the Hermite curve seems a bit weird, particularly at the handles. Recall that Hermite handles represent the tangents at their respective endpoints, so drawing their direct value is a bit meaningless and doesn&rsquo;t give us intuition about the geometry of the curve, even though these values are quite literally what form the entire curve. A more meaningful visualization would draw the handles as vectors relative to their endpoint (which is essentially what the Bezier does by implying this relationship):</p>
+<div style="display: flex; justify-content: space-around; gap: 10px;">
+    <figure style="text-align: center; width: 35%;">
+        <img src="hermite2.png" alt="Hermite curve, with handles drawn as vectors" style="width: 100%;" />
+    </figure>
+</div>
+<div style="display: flex; justify-content: space-around; gap: 10px;">
+    <figure style="text-align: center; width: 55%;">
+        <figcaption>Hermite curve, with handles drawn as vectors</figcaption>
+    </figure>
+</div>
+<p>This is actually how the Hermite curve is drawn in practice, which explains one more subtle difference between Hermite and Bezier curves I didn&rsquo;t intentionally introduce until now. Hermite handles represent <em>tangents</em> while Bezier handles are points with positions.</p>
+<p>Once again we are reminded the importance of distinguishing between a point and a vector :)</p>
+<h2 id="computing-the-bounding-box">Computing the bounding box</h2>
+<p>To compute the bounding box of the cubic curve, we can find the minima and maxima of the curve by finding the derivative at $t$. Finding the Bernstein polynomial for the derivative parameter vector:
+$$
+\mathbf{B}&rsquo;(t) =
+\begin{pmatrix}
+0 &amp; 1 &amp; 2t &amp; 3t^2
+\end{pmatrix}
+\begin{pmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 \newline
+-3 &amp; 3 &amp; 0 &amp; 0 \newline
+3 &amp; -6 &amp; 3 &amp; 0 \newline
+-1 &amp; 3 &amp; -3 &amp; 1 \newline
+\end{pmatrix}
+\begin{pmatrix}
+P_0 \newline
+P_1   \newline
+P_2  \newline
+P_3  \newline
+\end{pmatrix} =
+\begin{pmatrix}
+0 \newline
+3 (-P_0 + P_1)   \newline
+6(P_0 - 2P_1 + P_2)t  \newline
+3(-P_0 + 3P_1 - 3P_2 + P_3)t^2  \newline
+\end{pmatrix}
+$$</p>
+<p>Then you can find where $t=0$ in $\mathbf{B}&rsquo;(t)$ by plugging in the coefficients into the <a href="https://en.wikipedia.org/wiki/Quadratic_formula"  target="_blank" rel="noopener" >quadratic formula</a>. The coefficients are nicely extractable from the product of the above equation. This is the same method as outlined in this <a href="https://iquilezles.org/articles/bezierbbox/"  target="_blank" rel="noopener" >post by Inigo Quilez</a>, which also includes shader code for the Bezier bounding box.</p>
+<p>The Hermite curve equations are just as straightforward:
+$$
+\mathbf{H}&rsquo;(t) =
+\begin{pmatrix}
+0 &amp; 1 &amp; 2t &amp; 3t^2
+\end{pmatrix}
+\begin{pmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 \newline
+0 &amp; 1 &amp; 0 &amp; 0 \newline
+-3 &amp; -2 &amp; -1 &amp; 3 \newline
+2 &amp; 1 &amp; 1 &amp; -2 \newline
+\end{pmatrix}
+\begin{pmatrix}
+P_0 \newline
+P_1   \newline
+P_2  \newline
+P_3  \newline
+\end{pmatrix} =
+\begin{pmatrix}
+0 \newline
+P_1   \newline
+2(-3P_0-2P_1 - P_2 + 3P_3)t   \newline
+3(2P_0 + P_1 + P_2 - 2P_3)t^2  \newline
+\end{pmatrix}
+$$</p>
+<p>So solving for the quadratic equation $3t^2 + 2t + 1 = 0$, the solutions for $t$ can be found using $t=\frac{b \pm \sqrt{b^2 - 3ac}}{3a}$, which translates directly into code (in my use case, on the CPU):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>AABB <span style="color:#50fa7b">hermiteAABB</span>(glm<span style="color:#ff79c6">::</span>vec2 p0, glm<span style="color:#ff79c6">::</span>vec2 p1, glm<span style="color:#ff79c6">::</span>vec2 p2, glm<span style="color:#ff79c6">::</span>vec2 p3)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    AABB aabb{glm<span style="color:#ff79c6">::</span>min(p0, p3), glm<span style="color:#ff79c6">::</span>max(p0, p3)};
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">auto</span> [_, c, b, a] <span style="color:#ff79c6">=</span> applyCubicBasis({p0, p1, p2, p3}, hermiteBasisMat);
+</span></span><span style="display:flex;"><span>    a <span style="color:#ff79c6">*=</span> <span style="color:#bd93f9">3.0f</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">auto</span> discrim <span style="color:#ff79c6">=</span> b <span style="color:#ff79c6">*</span> b <span style="color:#ff79c6">-</span> a <span style="color:#ff79c6">*</span> c;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; i <span style="color:#ff79c6">&lt;</span> <span style="color:#bd93f9">2</span>; <span style="color:#ff79c6">++</span>i)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (discrim[i] <span style="color:#ff79c6">&lt;</span> <span style="color:#bd93f9">0.0f</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">continue</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">float</span> sqrtDiscrim <span style="color:#ff79c6">=</span> glm<span style="color:#ff79c6">::</span>sqrt(discrim[i]);
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">float</span> tm <span style="color:#ff79c6">=</span> (<span style="color:#ff79c6">-</span>b[i] <span style="color:#ff79c6">-</span> sqrtDiscrim) <span style="color:#ff79c6">/</span> a[i];
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">float</span> tp <span style="color:#ff79c6">=</span> (<span style="color:#ff79c6">-</span>b[i] <span style="color:#ff79c6">+</span> sqrtDiscrim) <span style="color:#ff79c6">/</span> a[i];
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (tm <span style="color:#ff79c6">&gt;</span> <span style="color:#bd93f9">0.0f</span> <span style="color:#ff79c6">&amp;&amp;</span> tm <span style="color:#ff79c6">&lt;</span> <span style="color:#bd93f9">1.0f</span>)
+</span></span><span style="display:flex;"><span>            aabb.expand(interpolateCubic(p0, p1, p2, p3, tNeg, hermiteBasisMat));
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (tp <span style="color:#ff79c6">&gt;</span> <span style="color:#bd93f9">0.0f</span> <span style="color:#ff79c6">&amp;&amp;</span> tp <span style="color:#ff79c6">&lt;</span> <span style="color:#bd93f9">1.0f</span>)
+</span></span><span style="display:flex;"><span>            aabb.expand(interpolateCubic(p0, p1, p2, p3, tPos, hermiteBasisMat));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> aabb;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The result looks like:
+<div style="display: flex; justify-content: space-around; gap: 10px;">
+    <figure style="text-align: center; width: 45%;">
+        <img src="bbs.png" alt="Hermite curves and their bounding boxes" style="width: 100%;" />
+        <figcaption>Hermite curves and their bounding boxes</figcaption>
+    </figure>
+</div></p>
+<h2 id="further-learning">Further learning</h2>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=jvPPXbo87ds"  target="_blank" rel="noopener" >Freya Holmer&amp;rsquo;s video</a> serves as a wonderful and gentle introduction to splines (including Bezier and others). In fact, her video kickstarted my own learning about the topic.</li>
+</ul>
+
+    </article>
+
+</div>
+
+
+    
+<script type="text/javascript" src="/main.js" defer></script>
+
+
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-PROPERTY_ID', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+</body>
+
+</html>
