@@ -1,40 +1,29 @@
-name: Publish to GH Pages
+name: Deploy Hugo Site to GitHub Pages
+
 on:
   push:
     branches:
-      - main
-  pull_request:
+      - main # Trigger deployment on push to the main branch
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout source
-        uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Hugo
+        uses: peaceiris/actions-hugo@v2
         with:
-          submodules: true
+          hugo-version: "0.112.0" # Specify the Hugo version you are using
 
-      - name: Checkout destination
-        uses: actions/checkout@v3
-        if: github.ref == 'refs/heads/main'
+      - name: Build the Hugo site
+        run: hugo --minify
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          ref: gh-pages
-          path: built-site
-
-      - name: Setup Hugo
-        run: |
-          curl -L -o /tmp/hugo.tar.gz 'https://github.com/gohugoio/hugo/releases/download/v0.110.0/hugo_extended_0.110.0_linux-amd64.tar.gz'
-          tar -C ${RUNNER_TEMP} -zxvf /tmp/hugo.tar.gz hugo
-      - name: Build
-        run: ${RUNNER_TEMP}/hugo
-
-      - name: Deploy
-        if: github.ref == 'refs/heads/main'
-        run: |
-          cp -R public/* ${GITHUB_WORKSPACE}/built-site/
-          cd ${GITHUB_WORKSPACE}/built-site
-          git add .
-          git config user.name 'evakato'
-          git config user.email 'evakato14@gmail.com'
-          git commit -m 'Updated site'
-          git push
+          github_token: ${{ secrets.GITHUB_TOKEN }} # GitHub token automatically provided by Actions
+          publish_dir: ./public # Hugo output directory
+          publish_branch: gh-pages # Branch for GitHub Pages
