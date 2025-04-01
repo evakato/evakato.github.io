@@ -1,6 +1,6 @@
 ### 2023 - Present
 
-MSc. at Utrecht University in the Netherlands, with my thesis on gradient mesh simplification in vector graphics (advised by Jiří Kosinka and Tim Ophelders). During my studies, I also worked as an R&D intern in geometry processing at [Braid](https://www.braid.tech).
+MSc. at Utrecht University in the Netherlands, with my thesis on gradient mesh simplification in vector graphics (advised by Jiří Kosinka and Tim Ophelders). I'm currently working as an R&D intern in geometry processing at [Braid](https://www.braid.tech).
 
 ### 2020 - 2023
 
