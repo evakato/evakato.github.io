@@ -1,0 +1,41 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+// Setting up with Github Pages:
+// https://medium.com/@JinnaBalu/godaddy-domain-with-github-pages-62aed906d4ef
+
+h1 {
+  font-size:20px;
+}
+
+h2 {
+  font-size:18px;
+}
+
+h3 {
+  font-size:16px;
+}
+
+h1, h2, h3, h4, h5, h6, p, a, code {
+	font: "Helvetica Neue";
+	margin: 0 0 10px;
+}
+
+a:hover, a:focus {
+	font-weight: normal;
+}
+
+pre > code {
+	font-size: 75%;
+}	
+
+table {
+	border-spacing: 0px;
+    border-collapse: collapse;
+}
+
+td {
+    border: none;
+}

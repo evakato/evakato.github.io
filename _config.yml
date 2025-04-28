@@ -1,0 +1,9 @@
+title: Eva Kato
+logo: /assets/img/eva.JPG
+description: >
+  <a href="https://github.com/evakato" target="_blank">Github</a>
+show_downloads: false
+google_analytics:
+theme: jekyll-theme-minimal
+plugins:
+  - jekyll-redirect-from
