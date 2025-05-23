@@ -8,3 +8,6 @@ theme: jekyll-theme-minimal
 plugins:
   - jekyll-redirect-from
 mathjax: true
+
+url: "https://evakato.github.io"
+baseurl: ""
