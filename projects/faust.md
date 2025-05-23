@@ -59,7 +59,7 @@ Within a compute shader, I used a 2x2 tap [bilinear filter](https://en.wikipedia
 
 <figure style="margin-inline: 0; padding-inline: 0; text-align: center;">
   <img src="./faust/temporalalpha3.png" alt="screenshot" height="auto" />
-  <figcaption>Teapot orbiting leftward in screenspace. From left to right: $\alpha$ values 0.01, 0.1, 0.2, 0.4 </figcaption>
+  <figcaption>Teapot orbiting leftward in screenspace. From left to right: $\alpha = 0.01, 0.1, 0.2, 0.4$ </figcaption>
 </figure>
 
 We can see lower $\alpha$ values yield smoother results but cause some crazy ghosting when objects move, like the smeared teapot on the left. Higher $\alpha$ values better track motion but are more noisy.
