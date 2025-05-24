@@ -23,6 +23,9 @@ I am looking for **full-time opportunities to start in Fall 2025**. If you see a
       </a>
     </td>
     <td style="width:33%">
+      <a href="./projects/gradmeshsimplification.html">
+        <img src="./projects/gms/thumbail.png">
+      </a>
     </td>
     <td style="width:33%">
     </td>
