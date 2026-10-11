@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{ .Title }} | {{ .Site.Title }}</title>
+    {{ $css := resources.Get "css/main.css" }} {{ $css = $css | resources.Minify
+    }}
+    <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
+  </head>
+  <body>
+    {{ partial "header.html" . }}
+    <main>{{ block "main" . }}{{ end }}</main>
+  </body>
+</html>

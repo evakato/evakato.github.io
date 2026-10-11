@@ -1,0 +1,225 @@
+:root {
+  --bg: #fdfdfb;
+  --fg: #16181b;
+  --ink: #1c3faa;
+  --muted: #666;
+  --border: 1px solid var(--ink);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Crimson Text", Georgia, "Times New Roman", serif;
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0;
+  padding: 2rem;
+  max-width: 740px;
+  margin-inline: auto;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: normal;
+  letter-spacing: 0.01em;
+  margin: 2rem 0 0.5rem;
+}
+
+h1 {
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 1.1;
+}
+
+h1::after {
+  content: "";
+  display: block;
+  width: 120px;
+  height: 2px;
+  background: var(--ink);
+  margin-top: 10px;
+}
+
+/* when a location subtitle follows the h1, let ITS line do the job instead */
+h1:has(+ .location-pin)::after {
+  content: none;
+}
+
+.location-pin {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin: 0 0 8px;
+  font-family: "Courier New", monospace;
+  letter-spacing: 0.02em;
+}
+
+.location-pin::after {
+  content: "";
+  display: block;
+  width: 120px;
+  height: 2px;
+  background: var(--ink);
+  margin-top: 8px;
+}
+
+.subtitle,
+p.lede {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0 0 1.5rem;
+}
+
+a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+nav {
+  display: flex;
+  gap: 1.25rem;
+  font-size: 0.85rem;
+  margin-bottom: 2rem;
+}
+
+nav a::before {
+  content: "\203A "; /* › */
+  color: var(--muted);
+}
+
+nav a.active {
+  color: var(--fg);
+  font-weight: bold;
+}
+
+article {
+  border: none;
+  margin-top: 0;
+}
+
+article p:first-child {
+  margin-top: 0;
+}
+
+footer {
+  border-top: var(--border);
+  margin-top: 3rem;
+  padding-top: 1rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+hr {
+  border: none;
+  border-top: var(--border);
+  margin: 2rem 0;
+}
+
+img {
+  border: var(--border);
+  max-width: 100%;
+}
+
+/* --- figures / captions --- */
+figure {
+  border: var(--border);
+  margin: 2rem 0;
+  padding: 0.5rem;
+  display: inline-block;
+  background: #fff;
+}
+
+figure img {
+  border: none;
+  display: block;
+  max-width: 100%;
+}
+
+figcaption {
+  font-size: 0.8rem;
+  color: var(--muted);
+  padding: 0.5rem 0.25rem 0.25rem;
+}
+
+/* --- research / project grid --- */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.project-card {
+  border: var(--border);
+  padding: 0.9rem;
+  background: #fff;
+}
+
+.project-card img {
+  width: 100%;
+  aspect-ratio: 16/10;
+  object-fit: cover;
+  border: var(--border);
+}
+
+/* plotter-style hatched placeholder, useful before real images exist */
+.project-card .thumb {
+  width: 100%;
+  aspect-ratio: 16/10;
+  border: var(--border);
+  background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 8px,
+      rgba(28, 63, 170, 0.15) 8px,
+      rgba(28, 63, 170, 0.15) 9px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 8px,
+      rgba(28, 63, 170, 0.15) 8px,
+      rgba(28, 63, 170, 0.15) 9px
+    );
+}
+
+.project-card h2 {
+  font-size: 1rem;
+  margin: 0.75rem 0 0.4rem;
+}
+
+.project-card p {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin: 0 0 0.6rem;
+}
+
+.project-links {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.75rem;
+}
+
+.btn {
+  font-size: 0.75rem;
+  color: var(--ink);
+  border: var(--border);
+  padding: 0.25rem 0.6rem;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn:hover {
+  background: var(--ink);
+  color: #fff;
+  text-decoration: none;
+}

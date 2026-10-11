@@ -1,0 +1,7 @@
+{{ define "main" }}
+<h1>{{ .Site.Title }}</h1>
+{{ with .Params.location }}
+<p class="location-pin">{{ . }}</p>
+{{ end }}
+<article>{{ .Content }}</article>
+{{ end }}

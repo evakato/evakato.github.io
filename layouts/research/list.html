@@ -1,0 +1,25 @@
+{{ define "main" }}
+<h1>{{ .Title }}</h1>
+
+{{ .Content }} {{ if false }}
+<div class="project-grid">
+  {{ range .Pages.ByDate.Reverse }} {{ $page := . }}
+  <article class="project-card">
+    {{ with $page.Params.cover }} {{ with $page.Resources.GetMatch . }}
+    <img src="{{ .RelPermalink }}" alt="{{ $page.Title }}" />
+    {{ end }} {{ end }}
+
+    <h2><a href="{{ $page.RelPermalink }}">{{ $page.Title }}</a></h2>
+    <p>{{ $page.Params.summary }}</p>
+
+    <div class="project-links">
+      {{ with $page.Params.arxiv }}
+      <a href="{{ . }}" class="btn" target="_blank">arXiv</a>
+      {{ end }} {{ with $page.Params.external }}
+      <a href="{{ . }}" class="btn" target="_blank">Code</a>
+      {{ end }}
+    </div>
+  </article>
+  {{ end }}
+</div>
+{{ end }} {{ end }}

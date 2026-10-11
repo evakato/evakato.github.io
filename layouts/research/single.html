@@ -1,0 +1,19 @@
+{{ define "main" }}
+<article>
+  <h1>{{ .Title }}</h1>
+
+  {{ with .Params.cover }} {{ with $.Resources.GetMatch . }}
+  <img src="{{ .RelPermalink }}" alt="{{ $.Title }}" />
+  {{ end }} {{ end }}
+
+  <div class="project-links">
+    {{ with .Params.arxiv }}
+    <a href="{{ . }}" class="btn" target="_blank">arXiv</a>
+    {{ end }} {{ with .Params.external }}
+    <a href="{{ . }}" class="btn" target="_blank">Code</a>
+    {{ end }}
+  </div>
+
+  {{ .Content }}
+</article>
+{{ end }}
