@@ -5,7 +5,7 @@
 {{ end }}
 <article>
   {{ with resources.Get "images/pfp2026_cropped2.jpeg" }} {{ $img := .Resize
-  "1000x 92" }}
+  "1000x q92" }}
   <img
     class="portrait"
     src="{{ $img.RelPermalink }}"
