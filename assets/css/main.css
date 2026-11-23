@@ -87,7 +87,7 @@ a:hover {
 nav {
   display: flex;
   gap: 1.25rem;
-  font-size: 0.85rem;
+  font-size: 1.05rem;
   margin-bottom: 2rem;
 }
 
@@ -98,7 +98,7 @@ nav a::before {
 
 nav a.active {
   color: var(--fg);
-  font-weight: bold;
+  font-weight: 600;
 }
 
 article {
