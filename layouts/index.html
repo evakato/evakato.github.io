@@ -3,5 +3,16 @@
 {{ with .Params.location }}
 <p class="location-pin">{{ . }}</p>
 {{ end }}
-<article>{{ .Content }}</article>
+<article>
+  {{ with resources.Get "images/pfp2026_cropped2.jpeg" }} {{ $img := .Resize
+  "1000x 92" }}
+  <img
+    class="portrait"
+    src="{{ $img.RelPermalink }}"
+    width="{{ $img.Width }}"
+    height="{{ $img.Height }}"
+    alt="Portrait"
+  />
+  {{ end }} {{ .Content }}
+</article>
 {{ end }}
