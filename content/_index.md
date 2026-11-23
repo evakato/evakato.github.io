@@ -1,7 +1,6 @@
 ---
 title: "Home"
 date: 2026-07-11
-draft: true
 location: "Tokyo, JP"
 ---
 
